@@ -504,25 +504,25 @@ pub struct VersionCheckResponse {
     pub url: String,
 }
 
-pub const VER_TYPE_RUSTDESK_CLIENT: &str = "rustdesk-client";
-pub const VER_TYPE_RUSTDESK_SERVER: &str = "rustdesk-server";
+pub const VER_TYPE_FIMAWDESK_CLIENT: &str = "fimawdesk-client";
+pub const VER_TYPE_FIMAWDESK_SERVER: &str = "fimawdesk-server";
 
 pub fn version_check_request(typ: String) -> (VersionCheckRequest, String) {
-    const URL: &str = "https://api.rustdesk.com/version/latest";
+    const URL: &str = "https://fimaw.com/version/latest";
 
     use sysinfo::System;
     let system = System::new();
     let os = system.distribution_id();
     let os_version = system.os_version().unwrap_or_default();
     let arch = std::env::consts::ARCH.to_string();
-    #[allow(deprecated)]
-    let device_id = fingerprint::get_fingerprint(None, None);
     (
         VersionCheckRequest {
             os,
             os_version,
             arch,
-            device_id,
+            // No device fingerprint leaves this machine; the endpoint only needs
+            // the platform to answer with a release URL.
+            device_id: Vec::new(),
             typ,
         },
         URL.to_string(),
