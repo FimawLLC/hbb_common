@@ -113,7 +113,12 @@ const CHARS: &[char] = &[
     'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
 ];
 
-pub const RENDEZVOUS_SERVERS: &[&str] = &["id.fimaw.com", "91.98.179.77"];
+// A rendezvous entry that cannot be reached is not a harmless fallback: the
+// first mediator task to leave marks SHOULD_EXIT, which tears down the healthy
+// connection too. Cloudflare serves the whole fimaw.com zone through its proxy
+// (including a wildcard), so id.fimaw.com does not resolve to this server until
+// a DNS-only record exists; until then the address stays the only entry.
+pub const RENDEZVOUS_SERVERS: &[&str] = &["91.98.179.77"];
 pub const RS_PUB_KEY: &str = "kZnEkYpN0uFWLkQbvX4NHpuXRjBl23GIAV2CBsTK0mQ=";
 
 pub const RENDEZVOUS_PORT: i32 = 21116;
