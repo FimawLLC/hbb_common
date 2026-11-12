@@ -113,7 +113,7 @@ const CHARS: &[char] = &[
     'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
 ];
 
-pub const RENDEZVOUS_SERVERS: &[&str] = &["id.fimaw.com"];
+pub const RENDEZVOUS_SERVERS: &[&str] = &["id.fimaw.com", "91.98.179.77"];
 pub const RS_PUB_KEY: &str = "kZnEkYpN0uFWLkQbvX4NHpuXRjBl23GIAV2CBsTK0mQ=";
 
 pub const RENDEZVOUS_PORT: i32 = 21116;
